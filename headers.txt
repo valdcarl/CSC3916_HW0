@@ -1,0 +1,92 @@
+
+Carlos A. Valdez
+January 28th, 2021
+WebAPI
+
+Request Headers
+	User-Agent: "PostmanRuntime/7.26.10"
+	Accept: "*/*"
+	Postman-Token: "4d3222c1-42eb-4d92-8cbf-6d130ef79e4e"
+	Host: "www.googleapis.com"
+	Accept-Encoding: "gzip, deflate, br"
+	Connection: "keep-alive"
+Response Headers
+	Content-Type: "application/json; charset=UTF-8"
+	Vary: "Origin"
+	Vary: "X-Origin"
+	Vary: "Referer"
+	Content-Encoding: "gzip"
+	Date: "Thu, 28 Jan 2021 19:36:21 GMT"
+	Server: "ESF"
+	Cache-Control: "private"
+	X-XSS-Protection: "0"
+	X-Frame-Options: "SAMEORIGIN"
+	X-Content-Type-Options: "nosniff"
+	Alt-Svc: "h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":44
+	3"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+	Transfer-Encoding: "chunked"
+
+Description of each request/response header
+In Request Headers:
+    -   User-Agent: is a characteristic string that lets servers and network peers identify the app
+	or OS or vender or version of that specific user-agent or a combination of all these things
+	we have PostmanRuntime/7.26.10, specfiying the identity of the app as Postman, and its version
+
+    -   Accept: is used to inform the server the content type that the client expects to accept
+	the */* portion means that any data is accepted, but server chooses what to return to the requested client
+
+    -   Postman-Token: is used to bypass some bug in Chrome, sending the long token avoids the issue of
+	pending and requests send with the same parameters, to ultimately help distinguish between
+	the requests on the server end.
+
+    -   Host: is a way to specify the domain name, and can sometimes can have the port num as well
+	Our host in this case is 'www.googleapis.com'
+
+    -   Accept-Encoding: is a compression algorithm that is understandable to the client
+	gzip is compression format using Lempel-Ziv coding w/ 32 bit CRC
+	deflate is compression format using zlib structure
+	br is a compression format using the Brotli algorithm
+
+    -   Connection: is the header that controls whether network connection says open or finishes after some action/s
+	"keep-alive" just means that it is open continuously, to keep making changes/uses if need
+
+In Response Headers:
+    -   Content-Type: tells what the media type is of the resource
+	ours is of JSON format, using UTF-8 character encoding like our text file here
+
+    -   Vary: is what determines how to match request headers to decide whether a cached response can be used
+	rather than requesting a fresh one from the origin server.
+		we use 3 different types apparently 'origin' 'referer' and 'x-origin'
+    -   Content-Encoding: Again designates what type of compression algorithm is being used
+	we have 'gzip' again using the Lempel-Ziv coding w/ 32 bit CRC
+    
+    -   Date: The date of this request/response
+
+    -   Server: describes the software used by the origin server handling our request, basically
+	which server generated the reponse
+	We are given 'ESF' which is 'External Security Facility'
+
+    -   Cache-Control: holds the instructions for caching in both the request and responses
+	'private' shows that it is intended for a singler user and shouldn't be put on some shared cache or proxy server
+
+    -   X-XSS-Protection: is a featuer of web browsers that stops pages from loading when it detects
+	reflected cross-site scripting.
+	By placing 0 as the value it disables this filter
+
+    -   X-Frame-Options: can be used to indicate wheter or not a browser should be allowed to render a
+	page in a <frame>, <iframe>, <embed>, or <object>. Used to avoid click-jacking attacks
+	the "SAMEORIGIN" value limits the frames enabled to just the current domain
+
+    -   X-Content-Type-Options: way to pot out of MIME type sniffing, used by server to indicate that
+	the MIME types advertised in the Content-Type headers should not be changed and be followed
+	thus 'nosniff' prevents client from checking the file type incase its another content-type
+
+    -   Alt-Svc: is used to advertise alternative services through which the same resource can be reached
+	we are given protocols, hosts, ports, and the ms as described in the lecture
+
+    -   Transfer-Encoding: Specifies the form of encoding used to safely transfer the payload body to the user
+	'chunked' refers to the stream of data being divided into a series of non-overlapping 'chunks'
+	probably best for the 'keep-alive' connection since its a lot of data to continuously streamed.
+
+
+
